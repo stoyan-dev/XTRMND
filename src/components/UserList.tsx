@@ -30,19 +30,18 @@ export const UserList: React.FC = () => {
       });
   }, []);
 
-  if (loading) return <p>Loading users...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="text-blue-500 font-semibold">Loading users...</p>;
+  if (error) return <p className="text-red-500 font-semibold">Error: {error}</p>;
 
   return (
-    <div>
-      <h2>Users</h2>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            <strong>{user.name}</strong> – {user.email}
-          </li>
-        ))}
-      </ul>
+    <div className="grid gap-4">
+      {users.map(user => (
+        <div key={user.id} className="p-4 border rounded-lg shadow bg-white hover:shadow-md transition">
+          <h2 className="text-lg font-bold text-gray-800">{user.name}</h2>
+          <p className="text-gray-600">{user.email}</p>
+          <p className="text-gray-600">{user.phone}</p>
+        </div>
+      ))}
     </div>
   );
 };
